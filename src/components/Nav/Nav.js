@@ -14,7 +14,7 @@ export default function Nav(props) {
                 <a href="#">Products</a>
                 <a href="#">About us</a>
             </div>
-            <div className="basket">
+            <div onClick={props.shohHandler} className="basket">
                 <ShoppingBasketIcon />
                 {props.quantity ? <span>{props.quantity}</span> : ''}
             </div>

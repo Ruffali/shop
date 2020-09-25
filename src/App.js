@@ -98,23 +98,23 @@ class App extends Component {
         quantity: "0",
       },
     ],
-    remember: 0
+    remember: 0,
+    show: false,
   }
 
   onStoreHandler = (quantity, id) => {
-    // const clothes = [...this.state.clothes]
-    // let remember = this.state.remember;
-    // let product = clothes.find(elem => elem.id === id);
+    const clothes = [...this.state.clothes]
+    let remember = this.state.remember;
+    let product = clothes.find(elem => elem.id === id);
 
-    // product.quantity++;
-    // let product_total = product.price * product.quantity;
-    // product.total = product_total;
+    product.quantity++;
+    let product_total = product.price * product.quantity;
+    product.total = product_total;
 
-    // this.setState({
-    //   remember: ++remember,
-    //   clothes: clothes 
-    // })
-    console.log(quantity);
+    this.setState({
+      remember: ++remember,
+      clothes: clothes
+    })
   }
 
   onRemoveHandler = (id) => {
@@ -128,29 +128,40 @@ class App extends Component {
 
     this.setState({
       remember: --remember,
-      clothes: clothes 
+      clothes: clothes
     })
+  }
+  onShowHandler = () => {
+    this.setState({ show: true })
+    console.log(this.state.show);
   }
 
   render() {
     return (
       <div className="app">
-        <Nav quantity={this.state.remember} />
+        <Nav shohHandler={this.onShowHandler} quantity={this.state.remember} />
         <div className="Stores">
-          <Store 
-          onCardHandler={() => { this.onStoreHandler(this.props.quantity, this.props.id) }} 
-          clothes={this.state.clothes}/>
+          <Store
+            onCardHandler={(quantity, id) => { this.onStoreHandler(quantity, id) }}
+            clothes={this.state.clothes} />
         </div>
-
-        {this.state.clothes.map((item) => (
-          <Show key={item.id}
-            onRemoveHandler={() => { this.onRemoveHandler(item.id) }}
-            result={item.total}
-            price={item.price}
-            image={item.img}
-            name={item.name}
-            quantity={item.quantity} />
-        ))}
+        {this.state.show ?
+          <div>
+            {
+              this.state.clothes.map((item) => (
+                <Show key={item.id}
+                  onRemoveHandler={() => { this.onRemoveHandler(item.id) }}
+                  result={item.total}
+                  price={item.price}
+                  image={item.img}
+                  name={item.name}
+                  quantity={item.quantity} />
+              ))
+            }
+          </div>
+          :
+          ''
+        }
       </div>
     );
   }

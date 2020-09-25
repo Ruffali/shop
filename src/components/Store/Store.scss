@@ -4,4 +4,19 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  .top,
+  .content {
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 15px;
+    font-size: 1.5vw;
+    &.content {
+      font-weight: 400;
+      font-size: 0.8vw;
+      color: #616161;
+      margin-bottom: 50px;
+    }
+  }
 }

@@ -1,0 +1,13 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .left {
+    font-weight: 400;
+    font-size: 1vw;
+    color: #616161;
+  }
+  .right {
+    width: 250px;
+  }
+}

@@ -13,7 +13,7 @@ export default function Show(props) {
                     <div className="top_name">Price</div>
                     <div className="top_name">Buttons</div>
                 </div>
-                <div class="bottom">
+                <div className="bottom">
                     <div className="bottom_name">{props.name}</div>
                     <div className="bottom_name">{props.quantity}</div>
                     <div className="bottom_name"><img src={props.image} /></div>
