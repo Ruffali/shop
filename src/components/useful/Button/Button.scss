@@ -1,0 +1,24 @@
+button {
+  width: 150px;
+  height: 40px;
+  margin-top: 25px;
+  border-radius: 20px;
+  color: white;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  outline: none;
+  box-shadow: none;
+  transition: all linear 0.2s;
+  cursor: pointer;
+  font-size: 0.8vw;
+  font-weight: 400;
+  &.default {
+    background: #1aa4cb;
+    &:focus,
+    &:hover {
+      color: #1aa4cb;
+      background: white;
+      border: 1px solid#1aa4cb;
+    }
+  }
+}

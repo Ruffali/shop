@@ -1,0 +1,29 @@
+.show {
+  width: 80%;
+  margin: 20px auto;
+  background: #eeeeee;
+  padding: 20px 15px;
+  border-radius: 5px;
+
+  .top,
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    .top_name,
+    .bottom_name {
+      text-align: center;
+      width: calc(100% / 5.2);
+      img {
+        width: 100px;
+      }
+    }
+    &.top {
+      margin-bottom: 15px;
+      .top_name {
+        color: #1aa4cb;
+        font-weight: 600;
+      }
+    }
+  }
+}
