@@ -1,15 +1,14 @@
 import React from 'react';
 import Input from '../../useful/Input/Input';
 import SVGsearch from '../../../assets/img/search.svg';
-
-import SearchIcon from '@material-ui/icons/Search';
+import { connect } from "react-redux";
 import './Search.scss';
 
-export default function Search(props) {
+const Search = (props) => {
     return (
         <div className="search">
             <div className="left">
-                {props.quantity.length} Products
+                {props.clothes.length} Products
             </div>
             <div className="right">
                 <Input
@@ -24,3 +23,11 @@ export default function Search(props) {
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return{
+        clothes: state.clothes
+    }
+}
+
+export default connect(mapStateToProps)(Search);

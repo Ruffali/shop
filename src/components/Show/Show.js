@@ -1,8 +1,20 @@
 import React from 'react'
-import Button from '../useful/Button/Button';
+import { connect } from "react-redux";
 import './Show.scss';
 
-export default function Show(props) {
+const Show = (props) => {
+
+    const onRemoveHandler = (id) => {
+        let clothes = [...props.clothes];
+        let product = clothes.find(elem => elem.id === id);
+
+        product.quantity--;
+        let product_total = product.total - product.price;
+        product.total = product_total;
+
+        props.onDecrementRemember(clothes);
+    }
+
     if (props.quantity != 0) {
         return (
             <div className="show">
@@ -19,7 +31,7 @@ export default function Show(props) {
                     <div className="bottom_name"><img src={props.image} /></div>
                     <div className="bottom_name">{props.result}</div>
                     <div className="bottom_name">
-                        <Button remove={props.onRemoveHandler} class={"default"}>Remove</Button>
+                        <button onClick={(id) => { onRemoveHandler(props.id) }} class={"default"}>Remove</button>
                     </div>
                 </div>
             </div>
@@ -30,3 +42,16 @@ export default function Show(props) {
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        clothes: state.clothes,
+        rememberRedux: state.remember
+    }
+}
+const decrementRedux = dispatch => {
+    return {
+        onDecrementRemember: (clothes) => dispatch({ type: "DECREMENT", clt: clothes }),
+    };
+};
+
+export default connect(mapStateToProps, decrementRedux)(Show);

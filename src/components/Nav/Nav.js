@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from "react-redux";
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PolymerIcon from '@material-ui/icons/Polymer';
 import './Nav.scss';
 
-export default function Nav(props) {
+const Nav = (props) => {
+  
     return (
         <div className="nav">
             <div className="logo">
@@ -14,10 +16,25 @@ export default function Nav(props) {
                 <a href="#">Products</a>
                 <a href="#">About us</a>
             </div>
-            <div onClick={props.shohHandler} className="basket">
+            <div onClick={props.showBasket} className="basket">
                 <ShoppingBasketIcon />
-                {props.quantity ? <span>{props.quantity}</span> : ''}
+                {props.rememberRedux ? <span>{props.rememberRedux}</span> : ''}
             </div>
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        show: state.show,
+        rememberRedux: state.remember
+    }
+}
+
+const showFromBasket = dispatch => {
+    return {
+        showBasket: () => dispatch({ type: "SHOW" }),
+    };
+};
+
+export default connect(mapStateToProps, showFromBasket)(Nav);
